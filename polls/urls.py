@@ -7,6 +7,6 @@ urlpatterns=[
 	url(r'^polls/(?P<pk>[0-9]+)/vote$',views.vote,name='vote'),
 	url(r'^mypolls/$',views.mypolls,name='mypolls'),
 	url(r'^create/$',views.create,name='create'),
-	#url(r'^polls/(?P<pk>[0-9]+)/edit$',views.edit,name='edit'),
+	url(r'^polls/(?P<pk>[0-9]+)/edit$',views.edit,name='edit'),
 
 ]

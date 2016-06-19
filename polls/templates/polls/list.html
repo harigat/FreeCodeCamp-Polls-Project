@@ -2,7 +2,9 @@
 {% block content %}
 {% for poll in polls %}
 <li><a href='{% url "detail" pk=poll.pk %}'>{{ poll.question }}</a>
-
+{% if mypolls %}
+<a href="{% url 'edit' pk=poll.pk %}">Edit</a>
+{% endif %}
 </li>
 {% endfor %}
 {% endblock %}

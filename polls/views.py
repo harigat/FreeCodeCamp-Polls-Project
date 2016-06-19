@@ -51,4 +51,24 @@ def create(request):
 @login_required
 def mypolls(request):
 	polls=Poll.objects.filter(author=request.user)
-	return render(request,'polls/list.html',{'polls':polls})
+	return render(request,'polls/list.html',{'polls':polls,'mypolls':True})
+	
+@login_required
+def edit(request,pk):
+	poll=get_object_or_404(Poll,pk=pk)
+	if request.method=='POST':
+		pollform=PollForm(request.POST,instance=poll,prefix='pollf')
+		choices=MyModelFormSet(request.POST,prefix='choicef')
+		if pollform.is_valid() and choices.is_valid():
+			poll=pollform.save(commit=False)
+			poll.author=request.user
+			poll.save()
+			for a in range(0,len(choices)):
+				if choices[a].cleaned_data !={}:
+					choices[a].instance.poll=poll
+					choices[a].save()
+			return redirect('detail',pk=poll.pk)
+	else:
+		pollform=PollForm(prefix='pollf',instance=poll)
+		choices=MyModelFormSet(queryset=poll.choice_set.all(),prefix='choicef')
+	return render(request,'polls/edit.html',{'pollform':pollform,'choices':choices})
