@@ -8,7 +8,7 @@ class Poll(models.Model):
 		return self.question
 		
 class Choice(models.Model):
-	question=models.ForeignKey('Poll',on_delete=models.CASCADE)
+	poll=models.ForeignKey('Poll',on_delete=models.CASCADE)
 	choice=models.CharField(max_length=200)
 	votes=models.IntegerField(default=0)
 	def __str__(self):
