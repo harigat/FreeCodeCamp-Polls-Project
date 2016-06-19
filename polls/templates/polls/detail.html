@@ -12,11 +12,12 @@
 <label for='choice{{choice.id}}'>{{choice.choice}}</label>
 <br>
 {% endfor %}
+{% if user.is_authenticated %}
 <input type='radio' name='choice' id='new' value='newchoice' />
 <label for='newchoice'>Add new option:</label>
 <br>
 <input type='text' id='newchoice' name='newchoice' placeholder='Enter your opinion' />
-
+{% endif %}
 <button type='submit'>Vote</button>
 </form>
 </section>
