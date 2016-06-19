@@ -47,3 +47,8 @@ def create(request):
 		poll=PollForm(prefix='pollf')
 		choices=MyModelFormSet(queryset=Choice.objects.none(),prefix='choicef')
 	return render(request,'polls/create.html',{'poll':poll,'choices':choices})
+
+@login_required
+def mypolls(request):
+	polls=Poll.objects.filter(author=request.user)
+	return render(request,'polls/list.html',{'polls':polls})
