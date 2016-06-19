@@ -9,9 +9,9 @@
 {%if error_message%}
 <p><strong>{{error_message}}</strong></p>
 {%endif%}
-<form id='forms' method='POST' action='{% url "create" %}'>
+<form id='forms' method='POST'>
 {% csrf_token %}
-{{poll.as_p}}
+{{pollform.as_p}}
 {{choices.as_p}}
 <div id="empty_form" style="display:none;">
     {{ choices.empty_form.as_p }}

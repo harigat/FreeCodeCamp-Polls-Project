@@ -32,21 +32,21 @@ def vote(request,pk):
 @login_required
 def create(request):
 	if request.method=='POST':
-		poll=PollForm(request.POST,prefix='pollf')
+		pollform=PollForm(request.POST,prefix='pollf')
 		choices=MyModelFormSet(request.POST,prefix='choicef')
-		if poll.is_valid() and choices.is_valid():
-			pollsaving=poll.save(commit=False)
-			pollsaving.author=request.user
-			pollsaving.save()
+		if pollform.is_valid() and choices.is_valid():
+			poll=pollform.save(commit=False)
+			poll.author=request.user
+			poll.save()
 			for a in range(0,len(choices)):
 				if choices[a].cleaned_data !={}:
-					choices[a].instance.poll=pollsaving
+					choices[a].instance.poll=poll
 					choices[a].save()
-			return redirect('detail',pk=pollsaving.pk)
+			return redirect('detail',pk=poll.pk)
 	else:
-		poll=PollForm(prefix='pollf')
+		pollform=PollForm(prefix='pollf')
 		choices=MyModelFormSet(queryset=Choice.objects.none(),prefix='choicef')
-	return render(request,'polls/create.html',{'poll':poll,'choices':choices})
+	return render(request,'polls/create.html',{'pollform':pollform,'choices':choices})
 
 @login_required
 def mypolls(request):
@@ -60,8 +60,6 @@ def edit(request,pk):
 		pollform=PollForm(request.POST,instance=poll,prefix='pollf')
 		choices=MyModelFormSet(request.POST,prefix='choicef')
 		if pollform.is_valid() and choices.is_valid():
-			poll=pollform.save(commit=False)
-			poll.author=request.user
 			poll.save()
 			for a in range(0,len(choices)):
 				if choices[a].cleaned_data !={}:
