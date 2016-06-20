@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Poll,Choice
 from .forms import PollForm,MyModelFormSet
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 # Create your views here.
 def home(request):
 	return render(request,'polls/home.html')
@@ -49,9 +51,9 @@ def create(request):
 	return render(request,'polls/create.html',{'pollform':pollform,'choices':choices})
 
 @login_required
-def mypolls(request):
+def mypolls(request,error_message=None):
 	polls=Poll.objects.filter(author=request.user)
-	return render(request,'polls/list.html',{'polls':polls,'mypolls':True})
+	return render(request,'polls/list.html',{'polls':polls,'mypolls':True,'error_message':error_message})
 	
 @login_required
 def edit(request,pk):
@@ -70,3 +72,10 @@ def edit(request,pk):
 		pollform=PollForm(prefix='pollf',instance=poll)
 		choices=MyModelFormSet(queryset=poll.choice_set.all(),prefix='choicef')
 	return render(request,'polls/edit.html',{'pollform':pollform,'choices':choices})
+@login_required
+def delete(request,pk):
+	poll=get_object_or_404(Poll,pk=pk)
+	if poll.author==request.user:
+		poll.delete()
+		return redirect('mypolls')
+	return redirect(mypolls,'error')

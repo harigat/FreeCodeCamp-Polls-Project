@@ -1,9 +1,13 @@
 {% extends 'polls/base.html' %}
 {% block content %}
+{% if error_message %}
+<p>Error: You don't have permission to delete this poll</p>
+{% endif %}
 {% for poll in polls %}
 <li><a href='{% url "detail" pk=poll.pk %}'>{{ poll.question }}</a>
 {% if mypolls %}
 <a href="{% url 'edit' pk=poll.pk %}">Edit</a>
+<a href="{% url 'delete' pk=poll.pk %}">Delete</a>
 {% endif %}
 </li>
 {% endfor %}
