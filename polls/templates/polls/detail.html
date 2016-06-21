@@ -1,6 +1,6 @@
 {% extends 'polls/base.html' %}
 {% block content %}
-<header>{{ poll.question }}</header>
+<header>{{ poll.question }} by {{user}}</header>
 <section>
 {%if error_message%}
 <p><strong>{{error_message}}</strong></p>
