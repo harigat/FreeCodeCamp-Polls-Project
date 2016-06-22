@@ -2,8 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Poll,Choice
 from .forms import PollForm,MyModelFormSet
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+import json
 # Create your views here.
 def home(request):
 	return render(request,'polls/home.html')
@@ -12,9 +11,12 @@ def list(request):
 	polls=Poll.objects.all().order_by('-pk')
 	return render(request,'polls/list.html',{'polls':polls})
 
-def detail(request,pk):
+def detail(request,pk,error_message=False):
 	poll=get_object_or_404(Poll,pk=pk)
-	return render(request,'polls/detail.html',{'poll':poll})
+	choice_set=poll.choice_set.all()
+	choices=[x.choice for x in choice_set]
+	votes=[x.votes for x in choice_set]
+	return render(request,'polls/detail.html',{'poll':poll,'choices':json.dumps(choices),'votes':json.dumps(votes),'error_message':error_message})
 
 def vote(request,pk):
 	poll=get_object_or_404(Poll,pk=pk)
@@ -25,11 +27,11 @@ def vote(request,pk):
 		else:
 			choice=Choice.objects.create(poll=poll,choice=request.POST['newchoice'])
 	except (KeyError,Choice.DoesNotExist):
-		return render(request,'polls/detail.html',{'poll':poll,'error_message':'You didn\'t select a choice.'})
+		return detail(request,pk=pk,error_message='You didn\'t select a choice.')
 	else:
 		choice.votes+=1
 		choice.save()
-		return render(request,'polls/detail.html',{'poll':poll})
+		return redirect('detail',pk=pk)
 
 @login_required
 def create(request):
@@ -78,4 +80,4 @@ def delete(request,pk):
 	if poll.author==request.user:
 		poll.delete()
 		return redirect('mypolls')
-	return redirect(mypolls,'error')
+	return mypolls(request,error_message=True)

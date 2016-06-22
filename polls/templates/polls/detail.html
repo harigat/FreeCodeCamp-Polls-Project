@@ -1,4 +1,5 @@
 {% extends 'polls/base.html' %}
+
 {% block content %}
 <header>{{ poll.question }} by {{user}}</header>
 <section>
@@ -21,4 +22,17 @@
 <button type='submit'>Vote</button>
 </form>
 </section>
+<div>
+<canvas id="myChart" width="400" height="400"></canvas>
+</div>
+{% endblock %}
+{% block js %}
+{% load staticfiles %}
+<script type="text/javascript">
+choices=JSON.parse('{{choices|safe}}');
+votes=JSON.parse('{{votes}}');
+</script>
+<script src='{% static "js/chart.min.js" %}'></script>
+<script src='{% static "js/detail.js" %}'></script>
+
 {% endblock %}
