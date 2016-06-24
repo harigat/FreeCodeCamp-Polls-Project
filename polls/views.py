@@ -23,23 +23,33 @@ def detail(request,pk,error_message=False):
 def vote(request,pk):
 	poll=get_object_or_404(Poll,pk=pk)
 	user=request.user
-	try:
-		selection=request.POST['choice']
-		if selection != 'newchoice':
-			choice=Choice.objects.get(pk=selection)
+	voted=request.COOKIES.get('voted_'+pk,False)
+	if not voted and (str(user) is 'AnonymousUser' or not Vote.objects.filter(user=user,poll=poll).exists()):
+		try:
+			selection=request.POST['choice']
+			new_choice=request.POST.get('newchoice')
+			
+			if selection != 'newchoice':
+				choice=Choice.objects.get(pk=selection)
+			elif user.is_authenticated():
+				if new_choice.strip() is '':
+					return detail(request,pk=pk,error_message='The textbox is empty')
+				else:
+					choice=Choice.objects.create(poll=poll,choice=request.POST['newchoice'])
+			else:
+				raise Choice.DoesNotExist
+		except (KeyError,Choice.DoesNotExist):
+			return detail(request,pk=pk,error_message='You didn\'t select a choice.')
 		else:
-			choice=Choice.objects.create(poll=poll,choice=request.POST['newchoice'])
-	except (KeyError,Choice.DoesNotExist):
-		return detail(request,pk=pk,error_message='You didn\'t select a choice.')
-	else:
-		if str(user) is 'AnonymousUser' or not Vote.objects.filter(user=user,poll=poll).exists():
+			response=redirect('detail',pk=pk)
+			response.set_cookie('voted_'+pk,True,max_age=10000)
 			choice.votes+=1
 			choice.save()
 			if str(user) is not 'AnonymousUser':
 				vote=Vote.objects.create(user=user,poll=poll)
-			return redirect('detail',pk=pk)
-		else:
-			return detail(request,pk=pk,error_message='You have voted aleady.')
+			return response
+	return detail(request,pk=pk,error_message='You have voted aleady.')
+
 @login_required
 def create(request):
 	if request.method=='POST':
@@ -81,6 +91,7 @@ def edit(request,pk):
 		pollform=PollForm(prefix='pollf',instance=poll)
 		choices=MyModelFormSet(queryset=poll.choice_set.all(),prefix='choicef')
 	return render(request,'polls/edit.html',{'pollform':pollform,'choices':choices})
+	
 @login_required
 def delete(request,pk):
 	poll=get_object_or_404(Poll,pk=pk)
@@ -93,9 +104,7 @@ def register(request):
 		return redirect('home')
 	elif request.method=='POST':
 		userform=UserForm(request.POST)
-		print('\n\nerror 33333\n\n',userform.errors)
 		if userform.is_valid():
-			print('\n\nerror 44444\n\n',userform.errors)
 			user=User.objects.create_user(**userform.cleaned_data)	
 			a=userform.cleaned_data['password']
 			b=request.POST['password']
