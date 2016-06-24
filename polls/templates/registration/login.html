@@ -6,7 +6,15 @@
 {% endif %}
 <form action='{% url "login" %}' method='POST'>
 {% csrf_token %}
+{{form.non_field_errors}}
+{% if form.username.errors %}
+<p>{{form.username.errors.as_text}}</p>
+{% endif %}
 <p>{{form.username.label_tag}}{{form.username}}</p>
+
+{% if form.password.errors %}
+<p>{{form.password.errors.as_text}}</p>
+{% endif %}
 <p>{{form.password.label_tag}}{{form.password}}</p>
 <input type='submit' value='Login' />
 <input type='hidden' name='next' value="{{ next }}" />
