@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Poll,Choice
-from .forms import PollForm,MyModelFormSet
+from .forms import PollForm,MyModelFormSet,UserForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import login,authenticate
 import json
 # Create your views here.
 def home(request):
@@ -81,3 +83,20 @@ def delete(request,pk):
 		poll.delete()
 		return redirect('mypolls')
 	return mypolls(request,error_message=True)
+def register(request):
+	if request.user.is_authenticated():
+		return redirect('home')
+	elif request.method=='POST':
+		userform=UserForm(request.POST)
+		print('\n\nerror 33333\n\n',userform.errors)
+		if userform.is_valid():
+			print('\n\nerror 44444\n\n',userform.errors)
+			user=User.objects.create_user(**userform.cleaned_data)	
+			a=userform.cleaned_data['password']
+			b=request.POST['password']
+			user=authenticate(username=user.username,password=userform.cleaned_data['password'])
+			login(request,user)
+			return redirect('home')
+	else:
+		userform=UserForm()
+	return render(request,'registration/register.html',{'form':userform})

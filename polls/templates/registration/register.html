@@ -1,0 +1,30 @@
+{% extends 'polls/base.html' %}
+{% block content %}
+<form method='POST'>
+{% csrf_token %}
+{{form.non_field_errors}}
+{% if form.username.errors %}
+<p>{{form.username.errors.as_text}}</p>
+{% endif %}
+<p>{{form.username.label_tag}}{{form.username}}</p>
+
+{% if form.password.errors %}
+<p>{{form.password.errors.as_text}}</p>
+{% endif %}
+
+<p>{{form.password.label_tag}}{{form.password}}</p>
+
+{% if form.repeat_password.errors %}
+<p>{{form.repeat_password.errors.as_text}}</p>
+{% endif %}
+
+<p>{{form.repeat_password.label_tag}}{{form.repeat_password}}</p>
+
+{% if form.email.errors %}
+<p>{{form.email.errors.as_text}}</p>
+{% endif %}
+
+<p>{{form.email.label_tag}}{{form.email}}</p>
+<input type='submit' value='Register' />
+</form>
+{% endblock %}
