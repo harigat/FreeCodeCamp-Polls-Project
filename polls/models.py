@@ -13,3 +13,7 @@ class Choice(models.Model):
 	votes=models.IntegerField(default=0)
 	def __str__(self):
 		return self.choice
+		
+class Vote(models.Model):
+	poll=models.ForeignKey('Poll',on_delete=models.CASCADE)
+	user=models.ForeignKey('auth.User')

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Poll,Choice
+from .models import Poll,Choice,Vote
 from .forms import PollForm,MyModelFormSet,UserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -22,6 +22,7 @@ def detail(request,pk,error_message=False):
 
 def vote(request,pk):
 	poll=get_object_or_404(Poll,pk=pk)
+	user=request.user
 	try:
 		selection=request.POST['choice']
 		if selection != 'newchoice':
@@ -31,10 +32,14 @@ def vote(request,pk):
 	except (KeyError,Choice.DoesNotExist):
 		return detail(request,pk=pk,error_message='You didn\'t select a choice.')
 	else:
-		choice.votes+=1
-		choice.save()
-		return redirect('detail',pk=pk)
-
+		if str(user) is 'AnonymousUser' or not Vote.objects.filter(user=user,poll=poll).exists():
+			choice.votes+=1
+			choice.save()
+			if str(user) is not 'AnonymousUser':
+				vote=Vote.objects.create(user=user,poll=poll)
+			return redirect('detail',pk=pk)
+		else:
+			return detail(request,pk=pk,error_message='You have voted aleady.')
 @login_required
 def create(request):
 	if request.method=='POST':
