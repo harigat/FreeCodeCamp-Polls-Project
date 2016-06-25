@@ -1,0 +1,45 @@
+body{
+	margin:0
+}
+ul{
+	text-align:right;
+	background-color:gainsboro;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+ul>li{
+	display:inline;
+	position:relative
+}
+ul>li:first-child{
+	float:left;
+}
+ul>li>a{
+	padding:1em;
+	display:inline-block;
+	text-decoration:none;
+	color:black;
+	background-color:gainsboro;
+	text-align:center
+	
+}
+ul>li>a:hover{
+	background-color:white;
+}
+
+ul>li:last-child>ul{
+	display:none;
+	text-align:left
+}
+ul>li:last-child:hover ul{
+	display:block;
+	position:absolute;
+	left:0;
+}
+ul>li:last-child>ul>li>a{
+	width:100%;
+}
+ul>li:last-child>ul>li>a:hover{
+		background-color:grey;
+}
