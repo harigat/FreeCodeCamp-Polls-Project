@@ -8,24 +8,24 @@
 	 <link rel="stylesheet" href="{%static 'css/styles.css'%}">
  </head>
 <body>
-<ul>
-<li id='title'><a href="{% url 'home' %}">Votegram</a></li>
-<li id='list'><a href='{% url "list" %}'>Polls</a></li>
+<ul id='nav'>
+	<li><a href="{% url 'home' %}">Votegram</a></li>
+	<li id='list'><a href='{% url "list" %}'>Polls</a></li>
 
-{% if user.is_authenticated %}
-<li id='create'><a href='{% url "create" %}'>Create</a></li>
-<li id='mypolls'><a href='{% url "mypolls" %}'>My Polls</a></li>
-<li id='logout'><a href='#'>Hello, {{user.username}}</a>
-	<ul>
-		<li>
-		<a href='{% url "logout" %}'>(Logout)</a>
-		</li>
-	</ul>
-</li>
-{% else %}
-<li id='login'><a href='{% url "login" %}'>Login</a></li>
-<li id='register'><a href='{% url "register" %}'>Register</a></li>
-{% endif %}
+	{% if user.is_authenticated %}
+	<li><a href='{% url "create" %}'>Create</a></li>
+	<li><a href='{% url "mypolls" %}'>My Polls</a></li>
+	<li><a href='#'>Hello, {{user.username}}</a>
+		<ul>
+			<li>
+			<a href='{% url "logout" %}'>Logout</a>
+			</li>
+		</ul>
+	</li>
+	{% else %}
+	<li id='login'><a href='{% url "login" %}'>Login</a></li>
+	<li id='register'><a href='{% url "register" %}'>Register</a></li>
+	{% endif %}
 </ul>
 {% block content %}
 {% endblock %}
