@@ -7,17 +7,18 @@ body{
 	list-style-type:none;
 	margin:0;
 	padding:0;
+	width:100%;
 }
 #nav>li{
-	display:inline;
+	display:inline-block;
 	position:relative
 }
 #nav>li:first-child{
 	float:left;
 }
-#nav>li>a, #nav ul>li>a{
+#nav a{
 	padding:1em;
-	display:inline-block;
+	display:block;
 	text-decoration:none;
 	color:black;
 	background-color:gainsboro;
@@ -37,9 +38,7 @@ body{
 	position:absolute;
 	left:0;
 }
-#nav>li:last-child>ul>li>a{
-	width:100%;
-}
-#nav>li:last-child>ul>li>a:hover{
+
+#nav ul>li>a:hover{
 		background-color:grey;
 }
