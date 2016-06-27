@@ -81,6 +81,7 @@ body{
 	display: block;
 	position: absolute;
 	width: 100%;
+	box-sizing:border-box;
 }
 
 /*To increase specificity*/
