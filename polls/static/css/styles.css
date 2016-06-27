@@ -1,9 +1,10 @@
 body{
 	margin:0
 }
+/* Nav Bar */
 #nav,#nav ul{
 	text-align:right;
-	background-color:gainsboro;
+	background-color:#fca153;
 	list-style-type:none;
 	margin:0;
 	padding:0;
@@ -20,8 +21,8 @@ body{
 	padding:1em;
 	display:block;
 	text-decoration:none;
-	color:black;
-	background-color:gainsboro;
+	color:white;
+	/*background-color:gainsboro;*/
 	text-align:center
 	
 }
@@ -41,4 +42,82 @@ body{
 
 #nav ul>li>a:hover{
 		background-color:grey;
+}
+
+/* Poll list */
+
+/*
+#e49653
+*/
+.error{
+	
+	width:80%;
+	margin:0 auto;
+	padding:1em 1em 0em 1em;
+}
+
+#list-container{
+	width:80%;
+	border:1px solid grey;
+	padding:0;
+	margin:1em auto
+}
+
+
+.list{
+	border-bottom:1px solid black;
+	list-style-type:none;
+	/*To keep floated elements in container*/
+	overflow: hidden;
+	/* To set position:absolute on list text*/
+	position: relative;
+}
+
+.list>a:first-child{
+	padding:1em;
+	text-decoration:none;
+	color:rgb(66, 139, 202);
+	/*Make list text take full width and overlap with delete and edit buttons*/
+	display: block;
+	position: absolute;
+	width: 100%;
+}
+
+/*To increase specificity*/
+html body .list .nopos{
+	position:relative
+}
+
+.list > a:not(:first-child){
+	padding:1em;
+	text-decoration:none;
+	color:white;
+	display:inline-block;
+	float: right;
+	/*Make edit and delete link above poll link*/
+	position:relative;
+	
+}
+.list>a:first-child:hover{
+
+	background-color:rgba(252, 161, 83, 0.06)
+}
+.list>a:first-child:active{
+	background-color:#fca153;
+	color:white;
+}
+.list:last-child{
+	border:0
+}
+.edit{
+	background-color:#28be68;
+}
+.edit:hover{
+	background-color:#3a9c64;
+}
+.delete{
+	background-color:#fc504a
+}
+.delete:hover{
+	background-color:#d44f4a
 }
