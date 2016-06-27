@@ -27,7 +27,7 @@ body{
 	
 }
 #nav>li>a:hover{
-	background-color:white;
+	background-color:#e49653;
 }
 
 #nav>li:last-child>ul{
@@ -41,13 +41,13 @@ body{
 }
 
 #nav ul>li>a:hover{
-		background-color:grey;
+		background-color:#e49653;
 }
 
 /* Poll list */
 
 /*
-#e49653
+
 */
 .error{
 	
