@@ -5,21 +5,37 @@
 <script type='text/javascript' src="{% static 'js/create.js'%}"></script>
 {%endblock%}
 {% block content %}
-<section>
-{%if error_message%}
-<p><strong>{{error_message}}</strong></p>
-{%endif%}
+<div id='container'>
+<h1>Create new poll</h1>
+{{form.non_field_errors}}
+
 <form id='forms' method='POST'>
 {% csrf_token %}
-{{pollform.as_p}}
-{{choices.as_p}}
+
+{{choices.management_form}}
+
+{%if pollform.errors%}
+<div>{{pollform.question.errors.as_text}}</div>
+{%endif%}
+{{pollform.question.label_tag}}
+<div id='question'>{{pollform.question}}</div>
+
+
+{%for choiceform in choices%}
+{%if choiceform.errors%}
+<div>{{choiceform.choice.errors.as_text}}</div>
+{%endif%}
+
+{{choiceform.choice.label_tag}}
+<div class='choice'>{{choiceform.choice}}</div>
+{% endfor %}
 <div id="empty_form" style="display:none;">
-    {{ choices.empty_form.as_p }}
+<div class='choice new'>{{ choices.empty_form }}</div>
 </div>
-<div id="add_form">Add</div>
+<div id="add_form">+ Add other option</div>
 <button type='submit'>Create</button>
 </form>
-</section>
+</div>
 
 {% endblock %}
 

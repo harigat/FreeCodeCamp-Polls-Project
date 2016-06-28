@@ -1,7 +1,7 @@
 body{
 	margin:0
 }
-/* Nav Bar */
+/******* Nav Bar ******/
 #nav,#nav ul{
 	text-align:right;
 	background-color:#fca153;
@@ -44,11 +44,8 @@ body{
 		background-color:#e49653;
 }
 
-/* Poll list */
+/****** Poll list *******/
 
-/*
-
-*/
 .error{
 	
 	width:80%;
@@ -60,7 +57,8 @@ body{
 	width:80%;
 	border:1px solid grey;
 	padding:0;
-	margin:1em auto
+	margin:1em auto;
+	position: relative;
 }
 
 
@@ -69,8 +67,6 @@ body{
 	list-style-type:none;
 	/*To keep floated elements in container*/
 	overflow: hidden;
-	/* To set position:absolute on list text*/
-	position: relative;
 }
 
 .list>a:first-child{
@@ -121,4 +117,57 @@ html body .list .nopos{
 }
 .delete:hover{
 	background-color:#d44f4a
+}
+
+
+/******* Create Poll *******/
+
+#container{
+	width:50%;
+	margin:3em auto;
+
+}
+#forms input{
+	width:95%;
+	padding:0.5em;
+	font-size:1em;
+	border:1px solid black;
+	transition:padding-top 0.3s,padding-bottom 0.3s;
+}
+
+/*for animation*/
+#forms .new input{
+	padding:0em 0.5em 0em 0.5em;
+}
+#forms label:not([for=id_pollf-question]),button[type=submit]{
+	margin-top:1em;
+	display:block;
+}
+#forms label{
+	font-size:1.2em;
+}
+#add_form{
+	background-color:#28be68;
+	border: 1px solid;
+	display: inline-block;
+	padding: 0.5em;
+	color:white;
+	cursor:pointer;
+	margin-top:1em;
+}
+#add_form:hover{
+	background-color:#3a9c64;
+}
+
+button[type=submit]{
+	height:3em;
+	width:9em;
+	background-color:orange;
+	color:white;
+	border:0px;
+	cursor:pointer;
+	font-size:1em;
+}
+button[type=submit]:hover{
+	background-color:#e49653;
 }
