@@ -67,7 +67,7 @@ def create(request):
 	else:
 		pollform=PollForm(prefix='pollf')
 		choices=MyModelFormSet(queryset=Choice.objects.none(),prefix='choicef')
-	return render(request,'polls/create.html',{'pollform':pollform,'choices':choices})
+	return render(request,'polls/create.html',{'pollform':pollform,'choices':choices,'title':'Create new poll','button':'Create'})
 
 @login_required
 def mypolls(request,error_message=None):
@@ -90,7 +90,7 @@ def edit(request,pk):
 	else:
 		pollform=PollForm(prefix='pollf',instance=poll)
 		choices=MyModelFormSet(queryset=poll.choice_set.all(),prefix='choicef')
-	return render(request,'polls/edit.html',{'pollform':pollform,'choices':choices})
+	return render(request,'polls/create.html',{'pollform':pollform,'choices':choices,'title':'Edit poll','button':'Save'})
 	
 @login_required
 def delete(request,pk):
