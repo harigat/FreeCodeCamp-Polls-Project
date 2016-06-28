@@ -7,8 +7,8 @@
 {% for poll in polls %}
 <li class='list'><a class='{% if not mypolls %} nopos{% endif %}' href='{% url "detail" pk=poll.pk %}'>{{ poll.question }}</a>
 {% if mypolls %}
-<a class='delete' href="{% url 'delete' pk=poll.pk %}">Delete</a>
-<a class='edit' href="{% url 'edit' pk=poll.pk %}">Edit</a>
+<div><a class='delete' href="{% url 'delete' pk=poll.pk %}">Delete</a></div>
+<div><a class='edit' href="{% url 'edit' pk=poll.pk %}">Edit</a></div>
 {% endif %}
 </li>
 {% endfor %}

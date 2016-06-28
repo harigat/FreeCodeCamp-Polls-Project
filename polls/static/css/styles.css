@@ -44,7 +44,16 @@ body{
 #nav ul>li>a:hover{
 		background-color:#e49653;
 }
-
+/* Dropdown arrow */
+#nav span{
+	border-width: 0px 0.15em 0.15em 0px;
+	display: inline-block;
+	width: 0.4em;
+	height: 0.4em;
+	border-style: solid;
+	transform: rotate(45deg);
+	margin: 0 0 0.15em 0.5em;
+}
 /****** Poll list *******/
 
 .error{
@@ -79,6 +88,8 @@ body{
 	position: absolute;
 	width: 100%;
 	box-sizing:border-box;
+	white-space:nowrap;
+	overflow:hidden;
 }
 
 /*To increase specificity*/
@@ -86,35 +97,46 @@ html body .list .nopos{
 	position:relative
 }
 
-.list > a:not(:first-child){
-	padding:1em;
-	text-decoration:none;
-	color:white;
+.list >div{
+	padding:1em 0.7em;
 	display:inline-block;
 	float: right;
 	/*Make edit and delete link above poll link*/
 	position:relative;
-	
+	/* To hide text-overflow */
+	background-color:white;
+	box-shadow:0 0 1em 1em white;
 }
-.list>a:first-child:hover{
+.list>div>a{
+	padding: 0.5em 1em;
+	color: white;
+	text-decoration: none;
+}
 
-	background-color:rgba(252, 161, 83, 0.06)
+.list>a:hover{
+	background-color:rgb(242, 242, 242);
 }
-.list>a:first-child:active{
-	background-color:#fca153;
-	color:white;
+/* To hide text overflow */
+.list>a:hover~div{
+	box-shadow:0 0 1em 1em rgb(242, 242, 242);
+	background-color:rgb(242, 242, 242);
 }
+
 .list:last-child{
 	border:0
 }
 .edit{
 	background-color:#28be68;
+
 }
 .edit:hover{
 	background-color:#3a9c64;
 }
 .delete{
-	background-color:#fc504a
+	background-color:#fc504a;
+	/*To keep edit box-shadow down*/
+	z-index:10;
+	position:relative;
 }
 .delete:hover{
 	background-color:#d44f4a
@@ -162,7 +184,6 @@ html body .list .nopos{
 
 button[type=submit]{
 	height:3em;
-	padding: 0.8em 2.5em;
 	padding: 0.8em 2.5em;
 	background-color:orange;
 	color:white;

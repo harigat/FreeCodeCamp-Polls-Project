@@ -16,7 +16,7 @@
 	{% if user.is_authenticated %}
 	<li><a href='{% url "create" %}'>Create</a></li>
 	<li><a href='{% url "mypolls" %}'>My Polls</a></li>
-	<li><a href='javascript:void(0)'>{{user.username}}</a>
+	<li><a href='javascript:void(0)'>{{user.username}}<span></span></a>
 		<ul>
 			<li>
 			<a href='{% url "logout" %}'>Logout</a>
