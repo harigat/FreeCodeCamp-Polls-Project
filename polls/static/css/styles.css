@@ -56,11 +56,9 @@ body{
 }
 /****** Poll list *******/
 
-.error{
-	
+#list-title{
 	width:80%;
 	margin:0 auto;
-	padding:1em 1em 0em 1em;
 }
 
 #list-container{
@@ -70,7 +68,6 @@ body{
 	margin:1em auto;
 	position: relative;
 }
-
 
 .list{
 	border-bottom:1px solid black;
@@ -143,7 +140,7 @@ html body .list .nopos{
 }
 
 
-/******* Create Poll *******/
+/******* Create, Edit, Login, Register *******/
 
 #container{
 	width:50%;
