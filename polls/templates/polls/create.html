@@ -15,7 +15,7 @@
 {{choices.management_form}}
 
 {%if pollform.errors%}
-<div>{{pollform.question.errors.as_text}}</div>
+<span>{{pollform.question.errors.as_text}}</span>
 {%endif%}
 {{pollform.question.label_tag}}
 <div id='question'>{{pollform.question}}</div>
@@ -23,14 +23,14 @@
 
 {%for choiceform in choices%}
 {%if choiceform.errors%}
-<div>{{choiceform.choice.errors.as_text}}</div>
+<span>{{choiceform.choice.errors.as_text}}</span>
 {%endif%}
 
 {{choiceform.choice.label_tag}}
 <div class='choice'>{{choiceform.choice}}</div>
 {% endfor %}
 <div id="empty_form" style="display:none;">
-<div class='choice new'>{{ choices.empty_form }}</div>
+<div class='choice'>{{ choices.empty_form }}</div>
 </div>
 <div id="add_form">+ Add other option</div>
 <button type='submit'>{{button}}</button>

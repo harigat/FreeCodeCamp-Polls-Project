@@ -1,20 +1,22 @@
 {% extends 'polls/base.html' %}
 {% block content %}
-<div>Login to continue</div>
-
-<form action='{% url "login" %}' method='POST'>
-{% csrf_token %}
+<div id='container'>
+<h1>Login</h1>
 {{form.non_field_errors}}
+<form id='forms' action='{% url "login" %}' method='POST'>
+{% csrf_token %}
+
 {% if form.username.errors %}
-<p>{{form.username.errors.as_text}}</p>
+<span>{{form.username.errors.as_text}}</span>
 {% endif %}
-<p>{{form.username.label_tag}}{{form.username}}</p>
+<div>{{form.username.label_tag}}{{form.username}}</div>
 
 {% if form.password.errors %}
-<p>{{form.password.errors.as_text}}</p>
+<span>{{form.password.errors.as_text}}</span>
 {% endif %}
-<p>{{form.password.label_tag}}{{form.password}}</p>
-<input type='submit' value='Login' />
+<div>{{form.password.label_tag}}{{form.password}}</div>
+<button type='submit' value='Login' />Login</button>
 <input type='hidden' name='next' value="{{ next }}" />
 </form>
+</div>
 {% endblock %}

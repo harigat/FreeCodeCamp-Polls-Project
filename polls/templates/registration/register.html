@@ -1,30 +1,34 @@
 {% extends 'polls/base.html' %}
 {% block content %}
-<form method='POST'>
-{% csrf_token %}
+<div id='container'>
+<h1>Register here</h1>
 {{form.non_field_errors}}
+<form id='forms' method='POST'>
+{% csrf_token %}
+
 {% if form.username.errors %}
-<p>{{form.username.errors.as_text}}</p>
+<span>{{form.username.errors.as_text}}</span>
 {% endif %}
-<p>{{form.username.label_tag}}{{form.username}}</p>
+<div>{{form.username.label_tag}}{{form.username}}</div>
 
 {% if form.password.errors %}
-<p>{{form.password.errors.as_text}}</p>
+<span>{{form.password.errors.as_text}}</span>
 {% endif %}
 
-<p>{{form.password.label_tag}}{{form.password}}</p>
+<div>{{form.password.label_tag}}{{form.password}}</div>
 
 {% if form.repeat_password.errors %}
-<p>{{form.repeat_password.errors.as_text}}</p>
+<span>{{form.repeat_password.errors.as_text}}</span>
 {% endif %}
 
-<p>{{form.repeat_password.label_tag}}{{form.repeat_password}}</p>
+<div>{{form.repeat_password.label_tag}}{{form.repeat_password}}</div>
 
 {% if form.email.errors %}
-<p>{{form.email.errors.as_text}}</p>
+<span>{{form.email.errors.as_text}}</span>
 {% endif %}
 
-<p>{{form.email.label_tag}}{{form.email}}</p>
-<input type='submit' value='Register' />
+<div>{{form.email.label_tag}}{{form.email}}</div>
+<button type='submit' value='Register' />Register</button>
 </form>
+</div>
 {% endblock %}

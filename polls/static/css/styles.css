@@ -147,7 +147,7 @@ html body .list .nopos{
 
 #container{
 	width:50%;
-	margin:3em auto;
+	margin:3em auto 0;
 
 }
 #forms input{
@@ -155,14 +155,9 @@ html body .list .nopos{
 	padding:0.5em;
 	font-size:1em;
 	border:1px solid black;
-	transition:padding-top 0.3s,padding-bottom 0.3s;
 }
 
-/*for animation*/
-#forms .new input{
-	padding:0em 0.5em 0em 0.5em;
-}
-#forms label:not([for=id_pollf-question]),button[type=submit]{
+#forms label:not([for=id_pollf-question]){
 	margin-top:1em;
 	display:block;
 }
@@ -173,10 +168,10 @@ html body .list .nopos{
 	background-color:#28be68;
 	border: 1px solid;
 	display: inline-block;
-	padding: 0.5em;
+	padding: 0.7em;
 	color:white;
 	cursor:pointer;
-	margin-top:1em;
+	margin-top:1.5em;
 }
 #add_form:hover{
 	background-color:#3a9c64;
@@ -184,6 +179,8 @@ html body .list .nopos{
 
 button[type=submit]{
 	height:3em;
+	display:block;
+	margin-top:1.5em;
 	padding: 0.8em 2.5em;
 	background-color:orange;
 	color:white;
@@ -193,4 +190,14 @@ button[type=submit]{
 }
 button[type=submit]:hover{
 	background-color:#e49653;
+}
+
+/*for error messages*/
+#forms>span{
+	float:right;
+	margin:0.2em 1em 0 0
+}
+#forms>span:not(:first-of-type){
+	float:right;
+	margin-top:1.5em;
 }
