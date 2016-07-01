@@ -1,29 +1,32 @@
 {% extends 'polls/base.html' %}
 
 {% block content %}
-<header>{{ poll.question }} by {{poll.author}}</header>
-<section>
+<div id='detail-container'>
+<div id='banner'>
+<h2>{{ poll.question }} by {{poll.author}}</h2>
+
 {%if error_message%}
-<p><strong>{{error_message}}</strong></p>
+<span>Error: {{error_message}}</span>
 {%endif%}
-<form method='POST' action='{% url "vote" pk=poll.pk %}'>
+<form id='forms' class='forms2' method='POST' action='{% url "vote" pk=poll.pk %}'>
 {% csrf_token %}
 {% for choice in poll.choice_set.all %}
-<input type='radio' name='choice' id='choice{{choice.id}}' value='{{choice.pk}}' />
-<label for='choice{{choice.id}}'>{{choice.choice}}</label>
+
+<label for='choice{{choice.id}}'><input type='radio' name='choice' id='choice{{choice.id}}' value='{{choice.pk}}' />{{choice.choice}}</label>
 <br>
 {% endfor %}
 {% if user.is_authenticated %}
-<input type='radio' name='choice' id='new' value='newchoice' />
-<label for='newchoice'>Add new option:</label>
+
+<label for='newchoice'><input type='radio' name='choice' id='new' value='newchoice' />Add new option:</label>
 <br>
 <input type='text' id='newchoice' name='newchoice' placeholder='Enter your opinion' />
 {% endif %}
 <button type='submit'>Vote</button>
 </form>
-</section>
-<div>
+</div>
+<div id='features'>
 <canvas id="myChart" width="400" height="400"></canvas>
+</div>
 </div>
 {% endblock %}
 {% block js %}

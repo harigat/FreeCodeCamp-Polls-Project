@@ -145,9 +145,9 @@ html body .list .nopos{
 #container{
 	width:50%;
 	margin:3em auto 0;
-
+	padding-bottom:1em
 }
-#forms input{
+#forms input:not([type=radio]){
 	width:95%;
 	padding:0.5em;
 	font-size:1em;
@@ -198,3 +198,139 @@ button[type=submit]:hover{
 	float:right;
 	margin-top:1.5em;
 }
+
+/****** Home ******/
+#home-container,#detail-container {
+    width: 60%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    height: 17em;
+	
+}
+
+#banner>div{
+	font-size:4em;
+	color:orange;
+}
+#banner>p{
+	font-size:1.5em;
+	margin-left:1.5em
+}
+
+#features {
+	float: right;
+	font-size:2em;
+	display: inline-block;
+}
+#banner,span{
+	display: inline-block;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);	
+}
+
+img{
+	display:inline-block;
+	height:2em;
+	width:2em;
+	margin-right:0.5em;
+}
+
+/***** Vote poll *****/
+
+#vote,#chart{
+	display:inline-block
+}
+
+#detail-container{
+	word-wrap:break-word;
+}
+.forms2#forms label{
+	margin-top:0.5em;
+}
+
+.forms2#forms label:last-of-type{
+	margin-bottom:0.2em
+}
+@media screen and (max-width:769px){
+	#detail-container,#home-container{
+		width:90%;
+	    margin-top:3em;
+	}
+	#detail-container,#banner,#home-container,#features span{
+		top:initial;
+		transform: translate(-50%);
+		left: 50%;
+		top:auto;
+		margin-bottom:2em;
+	}
+	#features{
+	float:none;
+	display:block;
+	}
+	#detail-container>div{
+		width:100%
+	}
+	#home-container{
+		font-size:0.8em
+	}
+	#features img{
+		display:block
+	}
+	#features img{
+		position:relative;
+		left:50%;
+		transform:translate(-50%)
+	}
+	#features span{
+		text-align:center;
+	}
+	#list-container{
+	width:95%;
+	}
+	#container{
+	width:90%;
+
+}
+}
+@media screen and (min-width:770px){
+	#detail-container,#home-container{
+		width:80%
+	}
+	#detail-container>div{
+		width:48%
+	}
+	#home-container{
+		font-size:1.3vw
+	}
+	#container{
+	width:70%;
+}
+}
+@media screen and (min-width:900px){
+	#detail-container,#home-container{
+		width:80%
+	}
+
+}
+@media screen and (min-width:1000px){
+	#detail-container,#home-container{
+		width:75%
+	}
+	#container{
+	width:50%;
+}
+}
+@media screen and (min-width:1200px){
+	#detail-container,#home-container{
+		width:60%
+	}
+		#home-container{
+		font-size:1.1vw
+	}
+
+}
+
+

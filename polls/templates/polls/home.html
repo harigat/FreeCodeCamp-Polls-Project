@@ -1,6 +1,15 @@
 {% extends 'polls/base.html' %}
+{% load staticfiles %}
 {% block content %}
-<section>
-<div id='banner'>Votegram</div>
-</section>
+<div id='home-container'>
+<div id='banner'>
+<div> Votegram</div>
+<p>Create polls easily</p>
+</div>
+<div id='features'>
+<p><img src="{% static 'img/bolt.png' %}"><span>Fast, free and easy to use</span></p>
+<p><img src="{% static 'img/chart.png' %}"><span>See results instantly in charts</span></p>
+<p><img src="{% static 'img/add.png' %}"><span>Add your own choices</span></p>
+</div>
+</div >
 {% endblock %}
