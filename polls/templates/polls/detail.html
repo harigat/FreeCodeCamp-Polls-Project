@@ -13,7 +13,7 @@
 {% for choice in poll.choice_set.all %}
 
 <label for='choice{{choice.id}}'><input type='radio' name='choice' id='choice{{choice.id}}' value='{{choice.pk}}' />{{choice.choice}}</label>
-<br>
+
 {% endfor %}
 {% if user.is_authenticated %}
 
