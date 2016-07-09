@@ -10,7 +10,7 @@
 {%endif%}
 <form id='forms' class='forms2' method='POST' action='{% url "vote" pk=poll.pk %}'>
 {% csrf_token %}
-{% for choice in poll.choice_set.all %}
+{% for choice in choice_set %}
 
 <label for='choice{{choice.id}}'><input type='radio' name='choice' id='choice{{choice.id}}' value='{{choice.pk}}' />{{choice.choice}}</label>
 

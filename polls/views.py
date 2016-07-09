@@ -15,10 +15,10 @@ def list(request):
 
 def detail(request,pk,error_message=False):
 	poll=get_object_or_404(Poll,pk=pk)
-	choice_set=poll.choice_set.all()
+	choice_set=poll.choice_set.order_by('choice')
 	choices=[x.choice for x in choice_set]
 	votes=[x.votes for x in choice_set]
-	return render(request,'polls/detail.html',{'poll':poll,'choices':json.dumps(choices),'votes':json.dumps(votes),'error_message':error_message})
+	return render(request,'polls/detail.html',{'poll':poll,'choice_set':choice_set,'choices':json.dumps(choices),'votes':json.dumps(votes),'error_message':error_message})
 
 def vote(request,pk):
 	poll=get_object_or_404(Poll,pk=pk)
