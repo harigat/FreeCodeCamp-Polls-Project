@@ -27,8 +27,12 @@ Error: You don't have permission to delete this poll
 
 {%else%}
 <div id='container'>
-<h1>My Polls</h1>
-<h3>Sorry, you have not created any polls yet.</h3>
+<h1>{% if mypolls %}
+My Polls
+{% else %}
+Polls
+{% endif %}</h1>
+<h3>Sorry, there are no polls created yet.</h3>
 </div>
 {% endif %}
 
