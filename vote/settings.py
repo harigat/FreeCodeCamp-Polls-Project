@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -23,9 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2-#ldq$bw8@a&8f$k8(f9r6cn7ez_=4+=rt=xv6=lp5+p&iby8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -122,3 +119,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT=os.path.join(BASE_DIR,'static')
 LOGIN_REDIRECT_URL='list'
+
+	
+	
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
+DEBUG = False
+SECURE_PROXY_SSL_HEADER = ( 'HTTP_X_FORWARDED_PROTO' ,  'https' )
+ALLOWED_HOSTS = ['*']
+try:
+	from .local_settings import *
+except ImportError:
+	pass
