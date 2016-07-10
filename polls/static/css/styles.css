@@ -1,6 +1,29 @@
+html{
+	height:100%;
+}
 body{
 	margin:0;
 	font-family: "Segoe UI",'Calibri';
+	min-height:100%;
+	position:relative;
+	padding-bottom:6em;
+	box-sizing:border-box
+}
+#footer{
+	text-align:center;
+	border-top:1px solid orange;
+	padding:1em 0 1em 0;
+	right:0;
+	left:0;
+	bottom:0;
+	position:absolute;
+}
+#footer a{
+	color:#337ab7;
+	text-decoration:none;
+}
+#home-container+#footer{
+
 }
 /******* Nav Bar ******/
 #nav,#nav ul{
@@ -76,7 +99,7 @@ body{
 	overflow: hidden;
 }
 
-.list>a:first-child{
+.list>a{
 	padding:1em;
 	text-decoration:none;
 	color:rgb(66, 139, 202);
@@ -87,6 +110,7 @@ body{
 	box-sizing:border-box;
 	white-space:nowrap;
 	overflow:hidden;
+    text-overflow: ellipsis;
 }
 
 /*To increase specificity*/
@@ -201,13 +225,7 @@ button[type=submit]:hover{
 
 /****** Home ******/
 #home-container,#detail-container {
-    width: 60%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    height: 17em;
-	
+	margin:3em auto 0;
 }
 
 #banner>div{
@@ -257,10 +275,9 @@ img{
 @media screen and (max-width:769px){
 	#detail-container,#home-container{
 		width:90%;
-	    margin-top:3em;
+		height:auto;
 	}
-	#detail-container,#banner,#home-container,#features span{
-		top:initial;
+	#banner,#features span{
 		transform: translate(-50%);
 		left: 50%;
 		top:auto;
@@ -292,12 +309,12 @@ img{
 	}
 	#container{
 	width:90%;
-
-}
+	}
 }
 @media screen and (min-width:770px){
 	#detail-container,#home-container{
-		width:80%
+		width:80%;
+		height: 17em;
 	}
 	#detail-container>div{
 		width:48%
@@ -327,7 +344,7 @@ img{
 	#detail-container,#home-container{
 		width:60%
 	}
-		#home-container{
+	#home-container{
 		font-size:1.1vw
 	}
 
