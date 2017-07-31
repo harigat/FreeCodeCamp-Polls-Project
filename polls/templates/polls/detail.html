@@ -3,7 +3,7 @@
 {% block content %}
 <div id='detail-container'>
 <div id='banner'>
-<h2>{{ poll.question }} by {{poll.author}}</h2>
+<h2>{{ poll.question }}<div>-by {{poll.author}}</div></h2>
 
 {%if error_message%}
 <span>Error: {{error_message}}</span>

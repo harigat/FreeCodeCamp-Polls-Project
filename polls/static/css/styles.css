@@ -231,6 +231,11 @@ button[type=submit]:hover{
 #banner{
 	display:inline-block;
 }
+#banner h2 div{
+	font-weight: 400;
+	color: #777;
+	font-size: 0.65em
+}
 #banner>div{
 	font-size:4em;
 	color:orange;
