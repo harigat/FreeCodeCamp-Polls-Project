@@ -1,12 +1,16 @@
 # VotePlex
 A responsive voting app with charts. It is written using Django framework.
 
+[![Try it here](https://user-images.githubusercontent.com/5856653/28872053-0fb2c964-77a5-11e7-99c1-2cd999e8a0b8.png)](http://voteplexproject.herokuapp.com)
+
 Features:
 - Responsive design
 - Account registration
 - Edit and delete polls
 - Colourful charts
 - Restriction on voting using cookies and user account
+
+![Screenshot](https://user-images.githubusercontent.com/5856653/28867482-e4605562-7793-11e7-847a-fd4ee6d990c4.png)
 
 Libraries used:
 - jQuery
