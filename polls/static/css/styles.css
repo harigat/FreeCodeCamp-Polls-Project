@@ -11,20 +11,21 @@ body{
 }
 #footer{
 	text-align:center;
-	border-top:1px solid orange;
 	padding:1em 0 1em 0;
 	right:0;
 	left:0;
 	bottom:0;
 	position:absolute;
+	background: #fca153;
+	color: white;
 }
-#footer a{
-	color:#337ab7;
-	text-decoration:none;
+#footer img{
+	width: 6em;
+	height: auto;
+	vertical-align: text-bottom;
+	margin-left: 0.2em
 }
-#home-container+#footer{
 
-}
 /******* Nav Bar ******/
 #nav,#nav ul{
 	text-align:right;
@@ -40,15 +41,18 @@ body{
 }
 #nav>li:first-child{
 	float:left;
+	font-size: 1.25em;
+	letter-spacing: 1px;
+}
+#nav>li:not(:first-child){
+	line-height: 2.1;
 }
 #nav a{
-	padding:1em;
+	padding:0.7em;
 	display:block;
 	text-decoration:none;
 	color:white;
-	/*background-color:gainsboro;*/
 	text-align:center
-	
 }
 #nav>li>a:hover{
 	background-color:#e49653;
@@ -65,7 +69,7 @@ body{
 }
 
 #nav ul>li>a:hover{
-		background-color:#e49653;
+	background-color:#e49653;
 }
 /* Dropdown arrow */
 #nav span{
